@@ -1,0 +1,39 @@
+# Render Blueprint: deploys BOTH booking agents from this one repo.
+# In the Render dashboard: New + > Blueprint > connect this repo. Render reads
+# this file and creates two web services. You'll be prompted for ANTHROPIC_API_KEY
+# (it is marked sync:false so it is never committed).
+#
+# Render injects PORT and RENDER_EXTERNAL_URL automatically; the agent card uses
+# RENDER_EXTERNAL_URL, so no post-deploy URL juggling is needed.
+services:
+  - type: web
+    name: flight-booking-agent
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn agents.flight_booking.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: MODEL
+        value: claude-haiku-4-5
+      - key: ANTHROPIC_API_KEY
+        sync: false
+
+  - type: web
+    name: hotel-booking-agent
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn agents.hotel_booking.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: MODEL
+        value: claude-haiku-4-5
+      - key: ANTHROPIC_API_KEY
+        sync: false

@@ -1,0 +1,55 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Flight Booking Agent",
+  "description": "Dummy A2A agent that searches and books flights over a fixed demo inventory.",
+  "url": "https://flight-booking-agent.onrender.com",
+  "preferredTransport": "JSONRPC",
+  "version": "1.0.0",
+  "provider": {
+    "organization": "AgentFabric Demo",
+    "url": "https://flight-booking-agent.onrender.com"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "defaultInputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "skills": [
+    {
+      "id": "search_flights",
+      "name": "Search Flights",
+      "description": "Find available flights between two airports.",
+      "tags": [
+        "travel",
+        "flights",
+        "search"
+      ],
+      "examples": [
+        "What flights are there from SFO to JFK?",
+        "Find me a business class flight from JFK to London."
+      ]
+    },
+    {
+      "id": "book_flight",
+      "name": "Book Flight",
+      "description": "Book a flight and return a confirmation PNR.",
+      "tags": [
+        "travel",
+        "flights",
+        "booking"
+      ],
+      "examples": [
+        "Book the morning flight from SFO to JFK.",
+        "Book me on AF250 to London tonight."
+      ]
+    }
+  ],
+  "documentationUrl": "https://github.com/your-org/agentfabric-demo"
+}

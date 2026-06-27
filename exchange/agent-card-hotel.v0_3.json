@@ -1,0 +1,55 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Hotel Booking Agent",
+  "description": "Dummy A2A agent that searches and books hotels over a fixed demo inventory.",
+  "url": "https://hotel-booking-agent.onrender.com",
+  "preferredTransport": "JSONRPC",
+  "version": "1.0.0",
+  "provider": {
+    "organization": "AgentFabric Demo",
+    "url": "https://hotel-booking-agent.onrender.com"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "defaultInputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "skills": [
+    {
+      "id": "search_hotels",
+      "name": "Search Hotels",
+      "description": "Find available hotels in a city.",
+      "tags": [
+        "travel",
+        "hotels",
+        "search"
+      ],
+      "examples": [
+        "What hotels do you have in London?",
+        "Find a 5 star hotel in Kensington."
+      ]
+    },
+    {
+      "id": "book_hotel",
+      "name": "Book Hotel",
+      "description": "Book a hotel and return a confirmation code.",
+      "tags": [
+        "travel",
+        "hotels",
+        "booking"
+      ],
+      "examples": [
+        "Book the Gotham Grand in New York.",
+        "Reserve a room near the South Bank in London."
+      ]
+    }
+  ],
+  "documentationUrl": "https://github.com/your-org/agentfabric-demo"
+}
