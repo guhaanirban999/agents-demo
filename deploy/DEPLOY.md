@@ -55,7 +55,12 @@ PROMPT="Find hotels in London" test/smoke.sh https://hotel-booking-agent.onrende
 ### Render notes
 - **Free tier sleeps** after ~15 min idle; the next request (including the card
   fetch) wakes it with a ~30–50s cold start. Fine for a demo. Upgrade to a paid
-  instance ($7/mo) for always-on. Hit `/healthz` to pre-warm before a live demo.
+  instance ($7/mo) for always-on.
+- **Before a live demo:** run `deploy/warmup.sh` (~2 min ahead). It wakes both
+  dynos (polls `/healthz` through the cold start) and does a real `message/send`
+  to warm the Claude path, then prints `🎉 Both agents warm`. Pass custom URLs as
+  args if your `*.onrender.com` hostnames differ. To keep them warm for the whole
+  demo window instead, run `deploy/keepalive.sh`.
 - **Secret:** `ANTHROPIC_API_KEY` is the only secret. Set/rotate it under each
   service's **Environment** tab.
 - **No Docker needed** — the Blueprint uses Render's native Python runtime. (A
