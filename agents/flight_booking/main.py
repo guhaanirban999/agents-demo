@@ -3,7 +3,7 @@
 from agents.common import settings
 from agents.common.agent_spec import build_card
 from agents.common.a2a_app import build_app
-from agents.common.claude_executor import ClaudeAgentExecutor
+from agents.common.openai_executor import OpenAIAgentExecutor
 from agents.flight_booking.data import SYSTEM_PROMPT
 
 BASE_URL = settings.public_url("http://localhost:8080")
@@ -39,5 +39,5 @@ card, legacy_card = build_card(
     ],
 )
 
-executor = ClaudeAgentExecutor(system_prompt=SYSTEM_PROMPT)
+executor = OpenAIAgentExecutor(system_prompt=SYSTEM_PROMPT)
 app = build_app(card=card, legacy_card=legacy_card, executor=executor)
